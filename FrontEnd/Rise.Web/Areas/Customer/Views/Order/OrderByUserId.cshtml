@@ -1,0 +1,106 @@
+﻿@using Rise.Web.Models;
+@model OrderDto
+@{
+    ViewData["Title"] = "OrderByUserId";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="order_details section_gap">
+	<div class="container">
+		<h3 class="title_confirmation">Thank you. Your order has been received.</h3>
+		<div class="row order_d_inner">
+			<div class="col-lg-4">
+				<div class="details_item">
+					<h4>Order Info</h4>
+					<ul class="list">
+						<li><a href="#"><span>Order ID</span> : @Model.OrderHeader.OrderHeaderId</a></li>
+						<li><a href="#"><span>Date</span> : @Model.OrderHeader.OrderTime</a></li>
+						<li><a href="#"><span>Total</span> : USD @Model.OrderHeader.OrderTotal</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="details_item">
+					<h4>Buyer</h4>
+					<ul class="list">
+						<li><a href="#"><span>First Name</span> : @Model.OrderHeader.FirstName</a></li>
+						<li><a href="#"><span>Last Name</span> : @Model.OrderHeader.LastName</a></li>
+						<li><a href="#"><span>Phone Number</span> : @Model.OrderHeader.Phone</a></li>
+						<li><a href="#"><span>Mail Address </span> : @Model.OrderHeader.Email</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="details_item">
+					<h4>Shipping Address</h4>
+					<ul class="list">
+						<li><a href="#"><span>Street</span> : gelmiyo ki</a></li>
+						<li><a href="#"><span>City</span> : :D</a></li>
+						<li><a href="#"><span>Country</span> : mb</a></li>
+						<li><a href="#"><span>Postcode </span> : 36952</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="order_details_table">
+			<h2>Order Details</h2>
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Product</th>
+							<th scope="col">Quantity</th>
+							<th scope="col">Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model.OrderDetails)
+						{
+							<tr>
+								<td>
+									<p>@item.ProductName</p>
+								</td>
+								<td>
+									<h5>x @item.Count</h5>
+								</td>
+								<td>
+									<p>@item.Price</p>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="order_details_table">
+			<h2>Payment Information</h2>
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Card Number</th>
+							<th scope="col">CVV</th>
+							<th scope="col">Discount</th>
+							<th scope="col">Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<p>@Model.OrderHeader.CardNumber</p>
+							</td>
+							<td>
+								<h5>@Model.OrderHeader.CVV</h5>
+							</td>
+							<td>
+								<h5>@Model.OrderHeader.DiscountTotal</h5>
+							</td>
+							<td>
+								<p>@Model.OrderHeader.OrderTotal</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</section>

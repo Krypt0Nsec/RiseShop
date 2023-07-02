@@ -1,0 +1,81 @@
+﻿@using Rise.Web.Models;
+@model OrderDto
+
+@{
+	ViewData["Title"] = "MyOrder";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="banner-area organic-breadcrumb">
+	<div class="container">
+		<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+			<div class="col-first">
+				<h1>User Page</h1>
+				<nav class="d-flex align-items-center">
+					<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+					<a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
+					<a href="category.html">Orders</a>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="cart_area">
+	<div class="container">
+		<div class="cart_inner">
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+
+							<th scope="col">Header Id</th>
+							<th scope="col">Product</th>
+							<th scope="col">Product Name</th>
+							<th scope="col">Price</th>
+							<th scope="col">Count</th>
+							<th scope="col">Details</th>
+
+						</tr>
+					</thead>
+
+					<tbody>
+						@foreach (var item in Model.OrderDetails)
+							{
+						<tr>
+							
+
+								<td>
+									<p>@item.OrderHeaderId</p>
+								</td>
+								<td>
+
+									<div class="media">
+										<div class="d-flex">
+											<img src="~/Uploads/@item.ImageUrl" class="card-img-top" style="height:130px" alt="@item.ImageUrl">
+										</div>
+									</div>
+								</td>
+								<td>
+									<p>@item.ProductName</p>
+								</td>
+								<td>
+									<h5>@item.Price</h5>
+								</td>
+								<td>
+									<h5>@item.Count</h5>
+								</td>
+							
+							<td>
+								<a asp-action="OrderByUserId" asp-controller="Order" asp-route-userId="@Model.OrderHeader.UserId" type="button" class="btn primary-btn">Sipariş Detayı</a>
+							</td>
+						</tr>
+						}
+					</tbody>
+
+				</table>
+			</div>
+		</div>
+	</div>
+
+</section>
+

@@ -1,0 +1,98 @@
+﻿@using Rise.Web.Models;
+@model OrderHeadersDto
+@{
+	ViewData["Title"] = "HeaderById";
+	Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="content-wrapper" style="min-height: 1604.19px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Sipariş Yönetimi</h1>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <!-- Profile Image -->
+                    <!-- /.card -->
+                    <!-- About Me Box -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Depo Detay</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <strong> User Id </strong>
+
+                            <p class="text-muted"><a asp-area="Admin" asp-controller="Order" asp-action="OrderByUserId" asp-route-userId="@Model.UserId">@Model.UserId</a></p>
+
+                            <hr>
+
+                            <strong> Mail Address</strong>
+
+                            <p class="text-muted">@Model.Email</p>
+
+                            <hr>
+
+                            <strong> First Name</strong>
+
+                            <p class="text-muted">@Model.FirstName</p>
+
+                            <hr>
+                            <strong> Last Name</strong>
+
+                            <p class="text-muted">@Model.LastName</p>
+
+                            <hr>
+                            <strong> Card Number</strong>
+
+                            <p class="text-muted">@Model.CardNumber</p>
+
+                            <hr>
+                            <strong> CVV</strong>
+
+                            <p class="text-muted">@Model.CVV</p>
+
+                            <hr>
+
+                            <strong> Order Total</strong>
+
+                            <p class="text-muted">@Model.OrderTotal</p>
+
+                            <hr>
+
+                            <strong> Discount Total</strong>
+
+                            <p class="text-muted">@Model.DiscountTotal</p>
+
+                            <hr>
+
+                           
+
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <a asp-controller="Order" asp-action="OrderIndex" class="btn btn-danger">Listeye Dön</a>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>

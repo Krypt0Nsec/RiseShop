@@ -1,0 +1,124 @@
+﻿@model Rise.Web.Models.CartDto
+
+
+<section class="banner-area organic-breadcrumb">
+	<div class="container">
+		<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+			<div class="col-first">
+				<h1>Checkout</h1>
+				<nav class="d-flex align-items-center">
+					<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+					<a href="single-product.html">Checkout</a>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+
+@if (TempData["Error"] != null)
+{
+	<div class="alert alert-warning" role="alert">@TempData["Error"]</div>
+}
+@if (Model != null && Model.CartDetails.Count() > 0)
+{
+
+	<section class="checkout_area section_gap">
+		<div class="container">
+
+
+			<div class="billing_details">
+				<div class="row">
+					<div class="col-lg-8">
+						<h3>Billing Details</h3>
+						<form class="row contact_form" action="#" method="post" novalidate="novalidate">
+							<input asp-for="CartHeader.UserId" type="hidden" />
+							<input asp-for="CartHeader.CartHeaderId" type="hidden" />
+							<input asp-for="CartHeader.CouponCode" type="hidden" />
+							<input asp-for="CartHeader.DiscountTotal" type="hidden" />
+							<input asp-for="CartHeader.OrderTotal" type="hidden" />
+
+							<div class="col-md-6 form-group p_star">
+								<input asp-for="CartHeader.FirstName" class="form-control" placeholder="First Name" />
+
+							</div>
+							<div class="col-md-6 form-group p_star">
+								<input asp-for="CartHeader.LastName" class="form-control" placeholder="Last Name" />
+
+							</div>
+							<div class="col-md-6 form-group p_star">
+								<input asp-for="CartHeader.Phone" class="form-control" placeholder="Phone Number" />
+
+							</div>
+							<div class="col-md-6 form-group p_star">
+								<input asp-for="CartHeader.Email" class="form-control" placeholder="Email Address" />
+
+							</div>
+							<div class="col-md-12 form-group p_star">
+								<input asp-for="CartHeader.PickupDateTime" class="form-control form_datetime" type="text">
+							</div>
+							<div class="col-md-12 form-group p_star">
+								<input asp-for="CartHeader.CardNumber" class="form-control" placeholder="Card Number" />
+
+							</div>
+							<div class="col-md-6 form-group p_star">
+								<input asp-for="CartHeader.CVV" class="form-control" placeholder="CVV" />
+
+							</div>
+							<div class="col-md-6 form-group p_star">
+								<input asp-for="CartHeader.ExpiryMonth" class="form-control" placeholder="MM" />
+
+							</div>
+							<div class="col-md-6 form-group p_star">
+								<input asp-for="CartHeader.ExpiryYear" class="form-control" placeholder="YYYY" />
+
+							</div>
+
+
+
+
+
+							<div class="col-lg-4">
+								<div class="order_box">
+									<h2>Your Order</h2>
+									<ul class="list">
+										<li><a>Product <span>Total</span></a></li>
+									</ul>
+									@foreach (var cartObj in Model.CartDetails)
+									{
+										<ul class="list">
+											<li><a>@cartObj.Product.Name <span class="middle">X @cartObj.Count</span> <span class="last">$@cartObj.Product.Price</span></a></li>
+										</ul>
+									}
+									<ul class="list list_2">
+										<li><a>Total <span> @string.Format("{0:c}", Model.CartHeader.OrderTotal)</span></a></li>
+									</ul>
+
+
+
+									<div class="card-footer">
+										<div class="row">
+
+											<div class="col-12 ">
+												<button type="submit" class="btn btn-success form-control ">
+													<span>Place Order</span>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+}
+@section Scripts{
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$(".form_datetime").datetimepicker({ format: 'yyyy-mm-dd hh:ii' });
+			$('.form_datetime').datetimepicker('setStartDate', new Date());
+		});
+	</script>
+}

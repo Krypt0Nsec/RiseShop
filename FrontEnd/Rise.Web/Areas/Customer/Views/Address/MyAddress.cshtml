@@ -1,0 +1,65 @@
+﻿@using Rise.Web.Models;
+@model List<AddressDto>
+
+@{
+	var currUser = User.Claims.Where(u => u.Type == "sub")?.FirstOrDefault()?.Value;
+}
+@{
+	ViewData["Title"] = "MyAddress";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="banner-area organic-breadcrumb">
+	<div class="container">
+		<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+			<div class="col-first">
+				<h1>User Page</h1>
+				<nav class="d-flex align-items-center">
+					<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+					<a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
+					<a href="category.html">Address</a>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<div class="album py-5 bg-light">
+	<div class="container">
+		<a asp-area="Customer" asp-controller="Address" asp-action="CreateAddress" class="btn primary-btn" >
+			<span>Address Create</span>
+		</a>
+		<h1></h1>
+		<div class="row">
+			
+			@foreach (var item in Model)
+			{
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
+					<div class="small-box bg-warning">
+						<div class="inner">
+							<h3>@item.AddressName<sup style="font-size: 20px"></sup></h3>
+
+							<p>@item.CityName</p>
+							
+							
+						</div>
+						<div class="icon">
+							<i class="fas fa-map-marker-alt mr-1"></i>
+						</div>
+						<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+						<a asp-action="AddressDelete" class="small-box-footer" asp-route-AddressId="@item.Id" onclick="return confirm('Silmek istediğinize emin misiniz?')">Delete <i class="fas fa-arrow-circle-right"></i></a>
+
+					</div>
+				</div>
+
+
+
+			}
+		</div>
+	</div>
+</div>
+
+
+
+

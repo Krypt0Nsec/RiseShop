@@ -1,0 +1,138 @@
+﻿@using Rise.Web.Models;
+@model OrderDto
+@{
+	ViewData["Title"] = "OrderByUserId";
+	Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="content-wrapper" style="min-height: 1604.19px;">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1>KLİMA YÖNETİMİ</h1>
+				</div>
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+
+	<!-- Main content -->
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6">
+
+					<!-- Profile Image -->
+					<!-- /.card -->
+					<!-- About Me Box -->
+					<div class="card card-primary">
+						<div class="card-header">
+							<h3 class="card-title">Depo Detay</h3>
+						</div>
+						<!-- /.card-header -->
+						<div class="card-body">
+							<strong> User Id </strong>
+
+							<p class="text-muted"><a asp-area="Admin" asp-controller="User" asp-action="ViewProfile" asp-route-id="@Model.OrderHeader.UserId">@Model.OrderHeader.UserId</a></p>
+
+							<hr>
+
+							<strong> Mail Address</strong>
+
+							<p class="text-muted">@Model.OrderHeader.Email</p>
+
+							<hr>
+
+							<strong> First Name</strong>
+
+							<p class="text-muted">@Model.OrderHeader.FirstName</p>
+
+							<hr>
+							<strong> Last Name</strong>
+
+							<p class="text-muted">@Model.OrderHeader.LastName</p>
+
+							<hr>
+							<strong> Card Number</strong>
+
+							<p class="text-muted">@Model.OrderHeader.CardNumber</p>
+
+							<hr>
+							<strong> CVV</strong>
+
+							<p class="text-muted">@Model.OrderHeader.CVV</p>
+
+							<hr>
+
+							<strong> Order Total</strong>
+
+							<p class="text-muted">@Model.OrderHeader.OrderTotal</p>
+
+							<hr>
+
+							<strong> Discount Total</strong>
+
+							<p class="text-muted">@Model.OrderHeader.DiscountTotal</p>
+
+							<hr>
+
+
+						</div>
+
+						<!-- /.card-body -->
+						<div class="card-footer">
+							<a asp-controller="Order" asp-action="OrderIndex" class="btn btn-danger">Listeye Dön</a>
+						</div>
+					</div>
+					<!-- /.card -->
+				</div>
+				<!-- /.col -->
+				<!-- /.col -->
+				<div class="card">
+					<div class="card-header">
+						<h3 class="card-title">Bordered Table</h3>
+					</div>
+					<!-- /.card-header -->
+
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th style="width: 10px">#</th>
+								<th>Details Id</th>
+								<th>Header Id</th>
+								<th>Product Name</th>
+								<th>Count</th>
+								<th>Price</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model.OrderDetails)
+							{
+								<tr>
+									<td></td>
+									<td>@item.OrderDetailsId</td>
+									<td>@item.OrderHeaderId</td>
+									<td>@item.ProductName</td>
+									<td>@item.Count</td>
+									<td>@item.Price</td>
+								</tr>
+							}
+							
+
+						</tbody>
+					</table>
+
+					<!-- /.card-body -->
+
+				</div>
+			</div>
+			<!-- /.row -->
+		</div><!-- /.container-fluid -->
+
+	</section>
+
+	<!-- /.content -->
+</div>
+
